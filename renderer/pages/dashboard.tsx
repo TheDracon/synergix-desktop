@@ -40,8 +40,8 @@ const Dashboard = () => {
                 <div className="flex-wrap w-1/2">
                     {/* first div */}
                     <div className="text-white bg-gray-600 w-2/2 h-2/5 m-2 p-8 pl-10 font-mono rounded-lg backdrop-blur-lg bg-opacity-10 static">
-                        <p className="" style={{fontSize: "4.5vh"}}> Your current balance: </p>
-                        <p className="mb-6 mt-2" style={{fontSize: "7vh"}}>{balance} SRX </p>
+                        <p className="" style={{fontSize: "3.5vh"}}> Your current balance: </p>
+                        <p className="mb-6 mt-2" style={{fontSize: "7.5vh"}}>{balance} SRX </p>
                         <Link href ="#"><a className="font-extrabold text-sm underline decoration-gray-400" style={{fontSize: "1rem"}}>Click here to convert</a></Link>
                     </div>
                     {/* third div */}
