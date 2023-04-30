@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    .sidebar-button {
+        padding: 5px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transform: scale(1);
+        transition: background-color 0.3s ease;
+    }
+      
+    .sidebar-button:hover {
+        @apply rounded-r-md;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-icon {
+        @apply relative flex items-center justify-center h-16 w-16 rounded-xl mt-2 mb-2 mx-auto shadow-xl 
+        bg-gray-800 text-blue-400;
+    }
+
+    .sidebar-tooltip {
+        @apply absolute w-auto h-auto p-2 m-10 min-w-max left-14
+        rounded-md shadow-md
+        text-white bg-gray-900
+        text-base font-bold
+        transition-all duration-100 scale-0 origin-left;
+    }
+    .sidebar-button:hover .icon-hover {
+        transform: scale(1.2);
+        @apply text-blue-50
+    }
+
+
+    .icon-hover {
+        transition: transform .1s ease;
+    }
+    .vw-10{
+
+    }
+    .content-dashboard{
+        background-image: url("../../resources/backgrounds/bg-straight1.svg");
+    }
+    .update-button{
+        @apply bg-primary rounded p-2 ml-auto mr-auto
+    }
+    
+}
+#titleBar {
+    -webkit-app-region: drag;
+}
+body{
+    background-color: #383838;
+    width: auto;
+    overflow: hidden;
+}
