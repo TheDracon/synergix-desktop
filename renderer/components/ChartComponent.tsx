@@ -7,13 +7,13 @@ function ChartComponent({ datasets, labels, type, options, className = "" , styl
   
   useEffect(() => {
     const chart = new Chart(chartRef.current, {
-      type: type,
-  
-      data: {
-        labels: labels,
-        datasets: datasets
-      },
-      options: options
+		type: type,
+	
+		data: {
+			labels: labels,
+			datasets: datasets
+		},
+		options: options
     });
 
     return () => {

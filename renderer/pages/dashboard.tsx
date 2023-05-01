@@ -6,16 +6,37 @@ import { WindowBar } from '../components/WindowBar';
 import ChartComponent from '../components/ChartComponent';
 import { randomInt } from 'crypto';
 import tailwindConfig from '../tailwind.config.js'
+import { motion } from "framer-motion";
+
 
 const Dashboard = () => {
     const [balance, setBalance] = React.useState(0.172712);
     const [chartData, setChartData] = React.useState([16, 16, 16, 16, 16]);
-    const [lables, setLabels] = React.useState(["Data1", "Data2", "Data3", "Data4", "Data6"])
+    const [labels, setLabels] = React.useState(["Data1", "Data2", "Data3", "Data4", "Data6"])
     const options = {
-        animation: {
-          duration: 500
-        },
-    }
+        transitions: {
+          show: {
+            animations: {
+              x: {
+                from: 0
+              },
+              y: {
+                from: 0
+              }
+            }
+          },
+          hide: {
+            animations: {
+              x: {
+                to: 1000
+              },
+              y: {
+                to: 1000
+              }
+            }
+          }
+        }
+      }
     const [datasets, setDatasets] = React.useState([{
         label: "Dataset",
         data: chartData,
@@ -36,34 +57,45 @@ const Dashboard = () => {
                 <title>Dashboard</title>
             </Head>
             <WindowBar/>
-            <div className="ml-20 p-4 mt-7 flex content-dashboard h-screen"> 
-                <div className="flex-wrap w-1/2">
-                    {/* first div */}
-                    <div className="text-white bg-gray-600 w-2/2 h-2/5 m-2 p-8 pl-10 font-mono rounded-lg backdrop-blur-lg bg-opacity-10 static">
-                        <p className="" style={{fontSize: "3.5vh"}}> Your current balance: </p>
-                        <p className="mb-6 mt-2" style={{fontSize: "7.5vh"}}>{balance} SRX </p>
-                        <Link href ="#"><a className="font-extrabold text-sm underline decoration-gray-400" style={{fontSize: "1rem"}}>Click here to convert</a></Link>
-                    </div>
-                    {/* third div */}
-                    <div className="text-white bg-gray-700 w-2/2 h-3/6 m-2 p-8 pl-10 font-mono rounded-lg backdrop-blur-lg bg-opacity-10 static">
-                        <p className="dynamic-text" style={{fontSize: "1.5vw"}}> Even more grafics and more stuff: </p>
-                        <div className='flex justify-center'>
-                            <ChartComponent datasets={datasets} labels={lables} type={"line"} options={options} style={{maxHeight: "39vh"}}/>
-                        </div>
-                    </div>
-                </div>
-                {/* second div */}
-                <div className="text-white bg-gray-500 w-3/6  m-2 p-8 font-mono  rounded-lg backdrop-blur-lg bg-opacity-10 static" style={{height: "91%"}}>
-                    <p className="ml-4 dynamic-text" style={{fontSize: "2vw"}}> Grafics and stuff: </p>
-                    <ChartComponent  datasets={datasets} labels={lables} type={"pie"} options={options}  style={{maxHeight: "70vh"}}/>
-                    <div className="mt-5 flex justify-center">
-                        <button onClick={updateData} className="update-button">Update graph</button>
-                    </div>
-                </div>
+            <motion.div className="bg-dashboard h-screen w-screen fixed -z-50" 
+                    initial={{ y: -1000, }}
+                    animate={{ y: 0, }}
+                    exit={{ y: 1000, }}
+                    transition={{
+                        duration: .3,
+                        ease: "easeInOut",
+                    }} > 
+			    </motion.div>
 
-            </div>
-            
-            <SideBar />
+              	<motion.div
+					initial={{ y: -1000, }}
+					animate={{ y: 0, }}
+					exit={{ y: 1000, }}
+					transition={{
+						duration: .3,
+						ease: "easeInOut",
+				}}  className='ml-20 p-4 mt-7 flex h-screen backdrop-brightness-110'>
+					<div className="flex-wrap w-1/2">
+						<h1 className='text-blue-100 text-8xl text-center font-mono' style={{fontSize: "10vh"}}>DASHBOARD</h1>
+						{/* first div */}
+						<div className="text-text bg-gray-800 w-2/2 h-2/6 m-2 p-8 pl-10 font-mono rounded-lg bg-opacity-50 static" style={{height: "30vh"}}>
+							<p className="mb-4 xl:mb-6 xl:text-4xl lg:text-3xl"> Your current balance: </p>
+							<p className="mb-4 xl:mb-2 2xl:mb-0 mt-2 bg-gradient-to-l from-blue-400 to-secondary bg-clip-text text-opacity-0 text-white" style={{fontSize: "4.5vw"}}>{balance} SRX </p>
+							<Link href ="#" className=''><a className="xl:text-2xl lg:text-xl font-extrabold underline italic decoration-gray-500 text-gray-300">Convert to another currency</a></Link>
+						</div>
+						{/* third div */}
+						<div className="mt-4 text-text bg-gray-800 w-2/2 h-3/6 m-2 p-8 pl-10 font-mono rounded-lg bg-opacity-50 static" style={{height: "46vh"}}>
+							<p className="xl:text-xl"> Even more grafics and more stuff: </p>
+							<ChartComponent datasets={datasets} labels={labels} type={"line"} options={options} style={{maxHeight: "39vh"}}/>
+						</div>
+					</div>
+					{/* second div */}
+					<div className=" text-text bg-gray-800  w-3/6 m-2 p-8 font-mono rounded-lg bg-opacity-50 static" style={{height: "91%"}}>
+						<p className="ml-4 xl:text-5xl lg:text-4xl"> Grafics and stuff: </p>
+						<ChartComponent  datasets={datasets} labels={labels} type={"pie"} options={options} className='mt-10' style={{maxHeight: "70vh"}}/>
+					</div>
+                </motion.div>
+            	<SideBar />
 
         </React.Fragment>
      );

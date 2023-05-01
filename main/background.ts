@@ -1,10 +1,11 @@
-import { app } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
-import { ipcMain, BrowserWindow } from 'electron';
+import { app,  ipcMain, BrowserWindow } from 'electron';
 const isProd: boolean = process.env.NODE_ENV === 'production';
 const isWindows = process.platform === "win32";
 import { initialize, enable as enableRemote } from "@electron/remote/main";
+var ipc = require('electron').ipcMain;
+
 initialize();
 
 let mainWindow
@@ -21,6 +22,9 @@ if (isProd) {
     width: 1000,
     height: 800,
     titleBarStyle: 'hidden',
+    webPreferences: {
+      nodeIntegration: true
+    },
     titleBarOverlay: {
       color: "#262626",
       symbolColor: '#74b1be',

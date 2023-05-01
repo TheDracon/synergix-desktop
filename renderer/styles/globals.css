@@ -20,7 +20,7 @@
     
     .sidebar-icon {
         @apply relative flex items-center justify-center h-16 w-16 rounded-xl mt-2 mb-2 mx-auto shadow-xl 
-        bg-gray-800 text-blue-400;
+        bg-gray-800 text-secondary;
     }
 
     .sidebar-tooltip {
@@ -32,29 +32,64 @@
     }
     .sidebar-button:hover .icon-hover {
         transform: scale(1.2);
-        @apply text-blue-50
+        @apply text-blue-50;
     }
 
 
     .icon-hover {
         transition: transform .1s ease;
     }
-    .vw-10{
+}
 
+@layer base{
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
-    .content-dashboard{
+    .exchange-box .exchange-submit-btn:hover {
+        backdrop-filter: blur(8px);
+        background-color: red;
+    }
+    .exchange-box:hover {
+        backdrop-filter: blur(0px);
+    }
+    #titleBar {
+        -webkit-app-region: drag;
+    }
+    html{
+        scroll-behavior: smooth;
+    }
+    body{
+        overflow: hidden;
+        user-select: none;
+        background-color: theme("colors.primary");
+        width: auto;
+    }
+    .bg-dashboard{
         background-image: url("../../resources/backgrounds/bg-straight1.svg");
+
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+        background-repeat:no-repeat;
     }
-    .update-button{
-        @apply bg-primary rounded p-2 ml-auto mr-auto
+    .bg-exchange {
+        background-image: url("../../resources/backgrounds/bg-straight1.svg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+        background-repeat:no-repeat;
     }
-    
+    .scrollable::-webkit-scrollbar {
+        display:none;
+    }
+    .scrollable{
+        overflow: auto;
+    }
 }
-#titleBar {
-    -webkit-app-region: drag;
-}
-body{
-    background-color: #383838;
-    width: auto;
-    overflow: hidden;
-}
+  
